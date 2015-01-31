@@ -1,5 +1,9 @@
 Pars::Application.routes.draw do
 
-  root to: 'dashboard#home'
+  root to: 'sites#index'
+
+  devise_for :users
+
+  resources :sites, only: [:index, :create]
 
 end

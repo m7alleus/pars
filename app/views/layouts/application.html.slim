@@ -16,8 +16,27 @@ body
           span.icon-bar
           span.icon-bar
         a.navbar-brand href="#{ root_url }" Pars.io
+      .navbar-collapse.collapse.navbar-responsive-collapse
+        - if user_signed_in?
+          ul.nav.navbar-nav.navbar-right
+            li
+              p.navbar-text = current_user.email
+            li
+              = link_to t('.logout'), destroy_user_session_path, method: :delete
 
   #content.container-fluid
+    .row
+      .col-md-8.col-md-offset-2
+        - if notice
+          .alert.alert-success
+            button.close type="button" data-dismiss="alert" aria-label="Close"
+              span aria-hidden="true" &times;
+            = notice
+        - if alert
+          .alert.alert-danger
+            button.close type="button" data-dismiss="alert" aria-label="Close"
+              span aria-hidden="true" &times;
+            = alert
     .row
       .col-md-12
         = yield
